@@ -4,29 +4,21 @@ import (
     "fmt"
     "strings"
     "flag"
-    "errors"
     "os"
 )
 
 func main() {
-    src, err := readInput()
-
-    if err != nil {
-        fail(err)
-    }
+    src := readInput()
 
     words := strings.Fields(src)
 
     fmt.Println(len(words))
 }
 
-func readInput() (src string, err error) {
+func readInput() (src string) {
 	flag.Parse()
 	src = strings.Join(flag.Args(), " ")
-	if src == "" {
-		return src, errors.New("missing string to match")
-	}
-	return src, nil
+	return src
 }
 
 // fail prints the error and exits.
